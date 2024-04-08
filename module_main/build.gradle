@@ -1,0 +1,40 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'com.whx.module_main'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 19
+        targetSdk 33
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [GOROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+    resourcePrefix 'main_'
+
+    viewBinding.enable = true
+
+    buildTypes {
+        debug {
+        }
+        release {
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    api project(path: ':module_common')
+    annotationProcessor project(path: ':MRouter-APT')
+//    annotationProcessor "com.github.wyjsonGo.MRouter:MRouter-Compiler:${VERSION}"
+}

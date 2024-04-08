@@ -1,0 +1,3 @@
+com.whx.router.compiler.processor.GenerateRouteModuleProcessor,aggregating
+com.whx.router.compiler.processor.GenerateApplicationModuleProcessor,aggregating
+com.whx.router.compiler.processor.ParamProcessor,aggregating

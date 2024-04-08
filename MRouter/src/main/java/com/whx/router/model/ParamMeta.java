@@ -1,0 +1,43 @@
+package com.whx.router.model;
+
+import androidx.annotation.NonNull;
+
+import com.whx.router.MRouter;
+import com.whx.router.enums.ParamType;
+
+public class ParamMeta {
+    private final String name;// 自定义参数名,未定义使用变量名
+    private final ParamType type;// 参数类型
+    private final boolean required;// 是否是必需的
+
+    public ParamMeta(String name, ParamType type, boolean required) {
+        this.name = name;
+        this.type = type;
+        this.required = required;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ParamType getType() {
+        return type;
+    }
+
+    public boolean isRequired() {
+        return required;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        if (!MRouter.isDebug()) {
+            return "";
+        }
+        return "ParamMeta{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                ", required=" + required +
+                '}';
+    }
+}

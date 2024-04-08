@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+kapt {
+    arguments {
+        arg("GOROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    namespace 'com.whx.module_kotlin'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 19
+        targetSdk 34
+    }
+    resourcePrefix 'kotlin_'
+
+    viewBinding.enable = true
+
+    buildTypes {
+        debug {
+        }
+        release {
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    api project(path: ':module_common')
+    kapt project(path: ':MRouter-APT')
+
+    //    kapt "com.github.wyjsonGo.MRouter:MRouter-Compiler:${VERSION}"
+}

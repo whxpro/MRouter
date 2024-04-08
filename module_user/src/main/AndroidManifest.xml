@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+
+        <activity
+            android:name="com.whx.module_user.activity.SignInActivity"
+            android:launchMode="singleTask" />
+
+        <activity android:name="com.whx.module_user.activity.ParamActivity" />
+
+        <activity android:name="com.whx.module_user.activity.UserInfoActivity" />
+
+    </application>
+
+</manifest>

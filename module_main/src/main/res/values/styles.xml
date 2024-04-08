@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Main.AppTheme.Activity.Splash" parent="Base.Theme.MRouter">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/main_splash_bg</item>
+    </style>
+
+</resources>

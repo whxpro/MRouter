@@ -1,0 +1,24 @@
+apply plugin: "maven-publish"
+android {
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+}
+afterEvaluate { project ->
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = GROUP_ID
+                artifactId = ARTIFACT_ID
+                version = VERSION
+                afterEvaluate {
+                    from components.release
+                }
+            }
+        }
+    }
+
+}

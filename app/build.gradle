@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.application'
+//    id 'com.whx.mrouter'
+}
+//MRouter {
+//    // 允许执行自动注册任务的集合,最好不要写debug,以节省开发阶段build时间
+//    runAutoRegisterBuildTypes "release"
+//    // 指定根模块项目名称,开启自动生成路由帮助类功能
+//    helperToRootModuleName "module_common"
+//}
+android {
+    namespace 'com.whx.mrouter.demo'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.whx.mrouter.demo"
+        minSdk 19
+        targetSdk 33
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    buildTypes {
+        debug {
+        }
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    api project(path: ':module_main')
+    api project(path: ':module_user')
+    api project(path: ':module_kotlin')
+}
