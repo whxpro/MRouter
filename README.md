@@ -1,7 +1,7 @@
-# [MRouter](https://github.com/wyjsonGo/MRouter)
+# [MRouter](https://github.com/whxpro/MRouter)
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wyjsonGo/MRouter/blob/main/LICENSE)
-[![Release Version](https://jitpack.io/v/wyjsonGo/MRouter.svg)](https://jitpack.io/#wyjsonGo/MRouter)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/whxpro/MRouter/blob/main/LICENSE)
+[![Release Version](https://jitpack.io/v/whxpro/MRouter.svg)](https://jitpack.io/#whxpro/MRouter)
 
 > 一个用于帮助 Android App 进行组件化改造的框架 —— 支持模块间的路由、通信、解耦
 
@@ -82,7 +82,7 @@ android {
         ...
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [GOROUTER_MODULE_NAME: project.getName()]
+                arguments = [MROUTER_MODULE_NAME: project.getName()]
             }
         }
     }
@@ -125,7 +125,7 @@ MRouter.getInstance().build("/test/activity").go();
 
 // 2. 跳转并携带参数
 MRouter.getInstance().build("/test/fragment")
-            .withString("name", "Wyjson")
+            .withString("name", "whx")
             .withObject("test", new TestModel(123, "Jack"))
             .withInt("age", 35)
             .go();
@@ -138,7 +138,7 @@ Helper方式:(开启Helper功能，参见7-1)
 TestActivityGoRouter.go();
 
 // 2. 跳转并携带参数
-TestFragmentGoRouter.go("Wyjson", testModel, 35);
+TestFragmentGoRouter.go("whx", testModel, 35);
 ```
 
 ##### 6.  使用Gradle插件实现路由表的自动加载，支持Gradle8.0+
@@ -198,7 +198,7 @@ AndroidManifest.xml
     <!-- Scheme -->
     <intent-filter>
         <data
-        android:host="m.wyjson.com"
+        android:host="m.whx.com"
         android:scheme="mrouter"/>
 
         <action android:name="android.intent.action.VIEW"/>
@@ -377,8 +377,8 @@ public class DegradeServiceImpl implements IDegradeService {
 card.isTagExist(LOGIN); // 判断是否存在登录标识
 ```
 
-tag使用示例[UserInfoActivity.java](https://github.com/wyjsonGo/MRouter/blob/master/module_user/src/main/java/com/wyjson/module_user/activity/UserInfoActivity.java)，
-tag处理示例[SignInInterceptor.java](https://github.com/wyjsonGo/MRouter/blob/master/module_user/src/main/java/com/wyjson/module_user/route/interceptor/SignInInterceptor.java)
+tag使用示例[UserInfoActivity.java](https://github.com/wyjsonGo/MRouter/blob/master/module_user/src/main/java/com/whx/module_user/activity/UserInfoActivity.java)，
+tag处理示例[SignInInterceptor.java](https://github.com/wyjsonGo/MRouter/blob/master/module_user/src/main/java/com/whx/module_user/route/interceptor/SignInInterceptor.java)
 
 ##### 7.  通过依赖注入解耦:服务管理
 
@@ -407,7 +407,7 @@ public class HelloServiceImpl implements HelloService {
 // 发现服务
 HelloService helloService = MRouter.getInstance().getService(HelloService.class);
 if (helloService != null) {
-    helloService.sayHello("Wyjson");
+    helloService.sayHello("whx");
 }
 ```
 
@@ -632,7 +632,7 @@ MRouter.getInstance().inject(this);
 ##### 7.  自定义模块路由加载
 
 如不使用Gradle插件[3-6]进行自动注册，也不想走默认扫描dex的方式，可以不调用`MRouter.autoLoadRouteModule(this)`方法，但需要自行调用模块生成的路由加载类。
-模块项目里至少使用一条注解`@Route`、`@Service`、`@Interceptor`，就会生成对应路由表的加载类。路由表加载类命名规则会根据`GOROUTER_MODULE_NAME`设置的模块名称转换成大写驼峰命名+`$$Route.java`，所有模块生成的路由表加载类都会放到`com.whx.router.module.route`包下。
+模块项目里至少使用一条注解`@Route`、`@Service`、`@Interceptor`，就会生成对应路由表的加载类。路由表加载类命名规则会根据`MROUTER_MODULE_NAME`设置的模块名称转换成大写驼峰命名+`$$Route.java`，所有模块生成的路由表加载类都会放到`com.whx.router.module.route`包下。
 例如模块名称`module_user`会生成`ModuleUser$$Route.java`
 
 ```java
@@ -709,7 +709,7 @@ MRouter.getInstance().registerEvent(this, UserEntity.class, new Observer<UserEnt
 });
 
 // 向UserFragment发送自定义类型数据
-MRouter.getInstance().postEvent("/user/fragment", new UserEntity(89, "Wyjson"));
+MRouter.getInstance().postEvent("/user/fragment", new UserEntity(89, "whx"));
 
 // 手动解除String类型全部订阅
 MRouter.getInstance().unRegisterEvent(this, String.class);
@@ -724,7 +724,7 @@ MRouter.getInstance().unRegisterEvent(this, String.class, observer);
 *   页面可以订阅多个相同类型的事件和多个不同类型的事件。
 *   路由页面事件功能内部使用`LiveData`。
 
-Demo示例[EventActivity.java](https://github.com/wyjsonGo/MRouter/blob/master/module_main/src/main/java/com/wyjson/module_main/activity/EventActivity.java)
+Demo示例[EventActivity.java](https://github.com/wyjsonGo/MRouter/blob/master/module_main/src/main/java/com/whx/module_main/activity/EventActivity.java)
 
 ## 六、模块Application生命周期
 
@@ -751,7 +751,7 @@ public class UserApplication implements IApplicationModule {
 }
 ```
 
-Demo示例[CommonApplication.java](https://github.com/wyjsonGo/MRouter/blob/master/module_common/src/main/java/com/wyjson/module_common/CommonApplication.java)
+Demo示例[CommonApplication.java](https://github.com/wyjsonGo/MRouter/blob/master/module_common/src/main/java/com/whx/module_common/CommonApplication.java)
 
 ##### 2.  在主Application添加分发
 
@@ -766,7 +766,7 @@ public class MyApplication extends Application {
     }
 ```
 
-Demo示例[MyApplication.java](https://github.com/wyjsonGo/MRouter/blob/master/app/src/main/java/com/wyjson/go_router/MyApplication.java)
+Demo示例[MyApplication.java](https://github.com/wyjsonGo/MRouter/blob/master/app/src/main/java/com/whx/go_router/MyApplication.java)
 
 ##### 3.  进阶用法
 
@@ -805,18 +805,18 @@ MainActivityGoRouter.go();
 
 // 经典:带参数访问
 MRouter.getInstance().build("/new/param/activity")
-        .withString("nickname", "Wyjson")
+        .withString("nickname", "whx")
         .withObject("test", testModel)
         .withInt("age", 78)
         .withInt("base", 7758)
         .go();
 // helper:带参数访问
 // 必传参数
-NewParamActivityGoRouter.go("Wyjson", testModel);
+NewParamActivityGoRouter.go("whx", testModel);
 // 所有参数(必传参数和非必传参数一起)
-NewParamActivityGoRouter.go("Wyjson", testModel, base, 78);
+NewParamActivityGoRouter.go("whx", testModel, base, 78);
 // 非必传参数可以链式调用,解决了经典方式需要知道类型和参数名的问题
-NewParamActivityGoRouter.create("Wyjson", testModel)// 必传参数
+NewParamActivityGoRouter.create("whx", testModel)// 必传参数
         .setAge(78)// 非必传参数
         .setBase(7758)// 非必传参数
         .build()
@@ -872,7 +872,7 @@ UserSignInActivityGoRouter.build()
 路由帮助类在根项目里还不知道上层其他模块里有什么页面和服务的时候，它的执行顺序是，先`build`出来common模块，在去`build`其他页面业务模块，
 最后在app项目汇总，此时知道了所有页面和服务去生成帮助类到根模块项目。说回刚才的话题，项目里使用了帮助类，而帮助类又存放到`build`里，
 此时要是缺少了`build`目录，会导致项目无法运行，其实有其他方案解决这个问题，但都不是很好，
-所以最后我把这些帮助类存放到了`根项目/src/main/java/com/wyjson/router/helper/...`目录下，按照页面和服务生成对应的帮助类，
+所以最后我把这些帮助类存放到了`根项目/src/main/java/com/whx/router/helper/...`目录下，按照页面和服务生成对应的帮助类，
 解决了多人开发代码冲突的问题。虽然这些类不在`build`目录里，也不用担心无用的类，框架在每次生成新的代码的时候会自动删除无用的类，
 和`build`目录机制一样。如果其他业务模块你不是通过本地引用，而是通过aar等方式引入，那框架只会更新本地引用模块项目的帮助类目录，
 不会更改和删除aar模块在根项目里的帮助类，这样做到了你所开发模块帮助类的更新而不影响其他团队生成的帮助类。
@@ -889,7 +889,7 @@ plugins {
 
 kapt {
     arguments {
-        arg("GOROUTER_MODULE_NAME", project.getName())
+        arg("MROUTER_MODULE_NAME", project.getName())
     }
 }
 
@@ -902,7 +902,7 @@ module_kotlin模块Demo示例[module_kotlin/build.gradle](https://github.com/wyj
 
 ##### 2.  Kotlin类中的字段无法注入如何解决？
 
-首先，Kotlin中的字段是可以自动注入的，但是注入代码为了不使用反射，使用的字段赋值的方式来注入的，Kotlin默认会生成set/get方法，并把属性设置为private 所以只要保证Kotlin中字段可见性不是private即可，简单解决可以在字段上添加 @JvmField。Demo示例[KotlinActivity.kt](https://github.com/wyjsonGo/MRouter/blob/master/module_kotlin/src/main/java/com/wyjson/module_kotlin/activity/KotlinActivity.kt)
+首先，Kotlin中的字段是可以自动注入的，但是注入代码为了不使用反射，使用的字段赋值的方式来注入的，Kotlin默认会生成set/get方法，并把属性设置为private 所以只要保证Kotlin中字段可见性不是private即可，简单解决可以在字段上添加 @JvmField。Demo示例[KotlinActivity.kt](https://github.com/wyjsonGo/MRouter/blob/master/module_kotlin/src/main/java/com/whx/module_kotlin/activity/KotlinActivity.kt)
 
 ##### 3.  路由中的分组概念
 

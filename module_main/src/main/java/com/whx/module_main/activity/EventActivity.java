@@ -53,7 +53,7 @@ public class EventActivity extends FragmentActivity {
 
     public void onClickCustomEvent(View view) {
         // 向EventFragment发送自定义类型
-        MainEventFragmentGoRouter.postEvent(new UserEntity(89, "Wyjson"));
+        MainEventFragmentGoRouter.postEvent(new UserEntity(89, "whx"));
     }
 
     public void onClickIntEvent(View view) {

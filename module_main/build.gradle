@@ -12,7 +12,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [GOROUTER_MODULE_NAME: project.getName()]
+                arguments = [MROUTER_MODULE_NAME: project.getName()]
             }
         }
     }

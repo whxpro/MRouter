@@ -54,7 +54,7 @@ public class Constants {
                     ...
                     javaCompileOptions {
                         annotationProcessorOptions {
-                            arguments = [GOROUTER_MODULE_NAME: project.getName()]
+                            arguments = [MROUTER_MODULE_NAME: project.getName()]
                         }
                     }
                 }
@@ -62,7 +62,7 @@ public class Constants {
             """;
 
     // Options of processor
-    public static final String KEY_MODULE_NAME = "GOROUTER_MODULE_NAME";
+    public static final String KEY_MODULE_NAME = "MROUTER_MODULE_NAME";
 
     // Java type
     private static final String LANG = "java.lang";

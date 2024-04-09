@@ -77,11 +77,11 @@ public class MainActivity extends FragmentActivity {
          * Demo示例 {@link JsonServiceImpl}
          */
         TestModel testModel = new TestModel(123, "Jack");
-        NewParamActivityGoRouter.go("Wyjson", testModel, base, 78);
+        NewParamActivityGoRouter.go("whx", testModel, base, 78);
         // or
-//        NewParamActivityGoRouter.go("Wyjson", testModel);
+//        NewParamActivityGoRouter.go("whx", testModel);
         // or
-//        NewParamActivityGoRouter.create("Wyjson", testModel)
+//        NewParamActivityGoRouter.create("whx", testModel)
 //                .setAge(78)
 //                .setBase(base)
 //                .build()
@@ -99,7 +99,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void onClickParamFragment(View view) {
-        Fragment cardFragment = NewParamFragmentGoRouter.go(78, "Wyjson");
+        Fragment cardFragment = NewParamFragmentGoRouter.go(78, "whx");
         if (cardFragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
@@ -160,7 +160,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     public void onClickKotlinActivity(View view) {
-        KotlinActivityGoRouter.go("Wyjson", 78);
+        KotlinActivityGoRouter.go("whx", 78);
     }
 
     private void showRouteLoadMode() {

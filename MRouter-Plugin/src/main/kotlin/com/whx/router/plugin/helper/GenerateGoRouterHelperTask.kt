@@ -58,7 +58,7 @@ abstract class GenerateGoRouterHelperTask : DefaultTask() {
         }
 
         val dir = rootProject!!.projectDir
-        val path = "/src/${catalog}/java/com/wyjson/router/helper"
+        val path = "/src/${catalog}/java/com/whx/router/helper"
         val packageFile = File(dir, path)
         AssembleGoRouteHelperCode(routeHelperModel!!).generateJavaFile(packageFile)
         saveCache()
