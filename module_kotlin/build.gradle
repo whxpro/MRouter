@@ -5,7 +5,7 @@ plugins {
 }
 kapt {
     arguments {
-        arg("GOROUTER_MODULE_NAME", project.getName())
+        arg("MROUTER_MODULE_NAME", project.getName())
     }
 }
 
