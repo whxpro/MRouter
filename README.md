@@ -69,12 +69,13 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    api 'com.github.wyjsonGo.MRouter:MRouter-Api:2.5.1'
+    api 'com.github.whxpro.MRouter:MRouter-Api:${last-version}'
 }
 // Kotlin配置参见8-1
 ```
 
 ##### 2.  在module项目下添加注解处理器依赖和配置
+###### Java Moudle
 
 ```groovy
 android {
@@ -89,11 +90,18 @@ android {
 }
 
 dependencies {
-    annotationProcessor 'com.github.wyjsonGo.MRouter:MRouter-Compiler:2.5.1'
+    annotationProcessor 'com.github.whxpro.MRouter:MRouter-APT:${last-version}'
 }
 ```
+###### Kotlin Moudle
+```groovy
+kapt {
+}
 
-module_user模块Demo示例[module_user/build.gradle](https://github.com/wyjsonGo/MRouter/blob/master/module_user/build.gradle)
+dependencies {
+    kapt 'com.github.whxpro.MRouter:MRouter-APT:${last-version}'
+}
+```
 
 ##### 3.  添加路由
 
@@ -894,26 +902,26 @@ kapt {
 }
 
 dependencies {
-    kapt 'com.github.wyjsonGo.MRouter:MRouter-Compiler:2.5.1'
+    kapt 'com.github.whxpro.MRouter:MRouter-APT:${last-version}'
 }
 ```
 
-module_kotlin模块Demo示例[module_kotlin/build.gradle](https://github.com/wyjsonGo/MRouter/blob/master/module_kotlin/build.gradle)
+module_kotlin模块Demo示例[module_kotlin/build.gradle](https://github.com/whxpro/MRouter/blob/main/module_kotlin/build.gradle)
 
 ##### 2.  Kotlin类中的字段无法注入如何解决？
 
-首先，Kotlin中的字段是可以自动注入的，但是注入代码为了不使用反射，使用的字段赋值的方式来注入的，Kotlin默认会生成set/get方法，并把属性设置为private 所以只要保证Kotlin中字段可见性不是private即可，简单解决可以在字段上添加 @JvmField。Demo示例[KotlinActivity.kt](https://github.com/wyjsonGo/MRouter/blob/master/module_kotlin/src/main/java/com/whx/module_kotlin/activity/KotlinActivity.kt)
+首先，Kotlin中的字段是可以自动注入的，但是注入代码为了不使用反射，使用的字段赋值的方式来注入的，Kotlin默认会生成set/get方法，并把属性设置为private 所以只要保证Kotlin中字段可见性不是private即可，简单解决可以在字段上添加 @JvmField。Demo示例[KotlinActivity.kt](https://github.com/whxpro/MRouter/blob/main/module_kotlin/src/main/java/com/whx/module_kotlin/activity/KotlinActivity.kt)
 
 ##### 3.  路由中的分组概念
 
 *   路由路径支持(a-zA-Z0-9_-.#)
 *   SDK中针对所有的路径`/test/1`、`/test/2`进行分组，分组只有在分组中的某一个路径第一次被访问的时候，该分组才会被初始化。分组使用路径中第一段字符串(/*/)作为分组，这里的路径需要注意的是至少需要有两级`/xx/xx`。
-*   GRouter允许一个module中存在多个分组，也允许多个module中存在相同的分组，但是最好不要在多个module中存在相同的分组，因为在注册路由组时发现存在相同的分组，会立即注册老的路由组里的全部路由，然后更新新的路由组信息。
+*   MRouter允许一个module中存在多个分组，也允许多个module中存在相同的分组，但是最好不要在多个module中存在相同的分组，因为在注册路由组时发现存在相同的分组，会立即注册老的路由组里的全部路由，然后更新新的路由组信息。
 
 ##### 4.  拦截器和服务的异同
 
 *   拦截器和服务所需要实现的接口不同，但是结构类似，都存在`init()`方法，但是两者的调用时机不同。
-*   拦截器因为其特殊性，只对Activity路由有效，拦截器会在GoRouter首次调用的时候初始化。
+*   拦截器因为其特殊性，只对Activity路由有效，拦截器会在MRouter首次调用的时候初始化。
 *   服务没有该限制，某一服务可能在App整个生命周期中都不会用到，所以服务只有被调用的时候才会触发初始化操作。
 
 ##### 5.  使用java方式注册服务
@@ -959,7 +967,7 @@ route path[/xx/xx] duplicate commit!!!
 ```log
 route pathClass[class xx.xx] duplicate commit!!!
 ```
-GoRouter日志tag为`MRouter`，MRouter-Compiler日志tag为`MRouter::Compiler`，MRouter-Gradle-Plugin日志tag为`MRouter::Gradle-Plugin`。
+MRouter日志tag为`MRouter`，MRouter-APT 日志tag为`MRouter::Compiler`，MRouter-Plugin日志tag为`MRouter::Gradle-Plugin`。
 
 ##### 12.  ARouter迁移指南
 
